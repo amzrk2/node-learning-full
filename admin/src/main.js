@@ -12,6 +12,9 @@ Vue.use(ElementUI);
 
 import App from './App.vue';
 
+import http from './http';
+Vue.prototype.$http = http;
+
 new Vue({
   router,
   store,
