@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const Category = require('../../model/Category');
+
+module.exports = (app) => {
+  router.post('/categories', async (req, res) => {
+    const model = await Category.create(req.body);
+    res.send(model);
+  });
+  app.use('/admin/api', router);
+};
