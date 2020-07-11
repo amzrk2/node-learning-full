@@ -18,6 +18,11 @@ const routes = [
         path: '/categories/list',
         component: () => import(/* webpackChunkName: "categories" */ '../views/CategoryList.vue'),
       },
+      {
+        path: '/categories/edit/:id',
+        component: () => import(/* webpackChunkName: "categories" */ '../views/CategoryEdit.vue'),
+        props: true,
+      },
     ],
   },
   {
