@@ -14,6 +14,10 @@ const routes = [
         path: '/categories/create',
         component: () => import(/* webpackChunkName: "categories" */ '../views/CategoryEdit.vue'),
       },
+      {
+        path: '/categories/list',
+        component: () => import(/* webpackChunkName: "categories" */ '../views/CategoryList.vue'),
+      },
     ],
   },
   {
