@@ -12,7 +12,8 @@ module.exports = (app) => {
     res.send(model);
   });
   router.get('/categories', async (req, res) => {
-    const items = await Category.find().limit(10);
+    const items = await Category.find().populate('parent').limit(10);
+    // populate 根据 parent 内存的 ID 同时查询出 parent 作为对象返回
     res.send(items);
   });
   router.get('/categories/:id', async (req, res) => {
