@@ -41,6 +41,16 @@
       <el-form-item class="scores" label="生存">
         <el-rate :max="9" v-model="model.scores.survive" show-score></el-rate>
       </el-form-item>
+      <el-form-item label="顺风出装">
+        <el-select v-model="model.itemsAdv" multiple>
+          <el-option v-for="item of allItems" :key="item._id" :label="item.name" :value="item._id"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="逆风出装">
+        <el-select v-model="model.itemsDis" multiple>
+          <el-option v-for="item of allItems" :key="item._id" :label="item.name" :value="item._id"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
       </el-form-item>
@@ -57,6 +67,7 @@ export default {
   data() {
     return {
       allHeroCategories: [],
+      allItems: [],
       model: {
         name: '',
         title: '',
@@ -67,7 +78,9 @@ export default {
           skills: 0,
           attack: 0,
           survive: 0
-        }
+        },
+        itemsAdv: [],
+        itemsDis: []
       }
     };
   },
@@ -96,11 +109,17 @@ export default {
     async fetchAllHeroCategories() {
       const res = await this.$http.get(`/rest/categories`);
       this.allHeroCategories = res.data;
+    },
+    async fetchAllItems() {
+      const res = await this.$http.get(`/rest/items`);
+      this.allItems = res.data;
     }
   },
   mounted() {
     // 获取分类数据
     this.fetchAllHeroCategories();
+    // 获取装备数据
+    this.fetchAllItems();
     // 若为编辑页面而不是新建页面
     if (this.id) {
       this.fetch();
