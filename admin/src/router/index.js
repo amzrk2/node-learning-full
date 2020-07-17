@@ -12,15 +12,28 @@ const routes = [
     children: [
       {
         path: '/categories/create',
-        component: () => import(/* webpackChunkName: "categories" */ '../views/CategoryEdit.vue'),
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/CategoryEdit.vue'),
       },
       {
         path: '/categories/list',
-        component: () => import(/* webpackChunkName: "categories" */ '../views/CategoryList.vue'),
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/CategoryList.vue'),
       },
       {
         path: '/categories/edit/:id',
-        component: () => import(/* webpackChunkName: "categories" */ '../views/CategoryEdit.vue'),
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/CategoryEdit.vue'),
+        props: true,
+      },
+      {
+        path: '/items/create',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ItemEdit.vue'),
+      },
+      {
+        path: '/items/list',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ItemList.vue'),
+      },
+      {
+        path: '/items/edit/:id',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ItemEdit.vue'),
         props: true,
       },
     ],
