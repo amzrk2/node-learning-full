@@ -36,6 +36,19 @@ const routes = [
         component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ItemEdit.vue'),
         props: true,
       },
+      {
+        path: '/heroes/create',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/HeroEdit.vue'),
+      },
+      {
+        path: '/heroes/list',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/HeroList.vue'),
+      },
+      {
+        path: '/heroes/edit/:id',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/HeroEdit.vue'),
+        props: true,
+      },
     ],
   },
   {
