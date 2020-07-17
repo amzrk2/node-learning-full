@@ -51,6 +51,9 @@
           <el-option v-for="item of allItems" :key="item._id" :label="item.name" :value="item._id"></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="使用技巧">
+        <el-input type="textarea" v-model="model.ueageTips"></el-input>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
       </el-form-item>
@@ -80,7 +83,8 @@ export default {
           survive: 0
         },
         itemsAdv: [],
-        itemsDis: []
+        itemsDis: [],
+        ueageTips: ''
       }
     };
   },
