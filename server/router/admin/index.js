@@ -52,6 +52,7 @@ module.exports = (app) => {
   // single('file') 接受单个文件 字段名为 file (element 上传模块定义)
   app.use('/admin/api/upload', uploadMiddleware.single('file'), async (req, res) => {
     const file = req.file;
+    file.url = `http://localhost:3000/uploads/${file.filename}`;
     res.send(file);
   });
 };
