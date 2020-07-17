@@ -1,5 +1,5 @@
 <template>
-  <div class="category-edit">
+  <div class="item-edit">
     <h2>{{ id?'编辑':'新建' }}物品 {{ id }}</h2>
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item label="名称">
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'CategoryEdit',
+  name: 'ItemEdit',
   props: {
     id: String
   },

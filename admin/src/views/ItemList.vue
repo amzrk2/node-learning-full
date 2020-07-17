@@ -1,5 +1,5 @@
 <template>
-  <div class="category-list">
+  <div class="item-list">
     <h2>物品列表</h2>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'CategoryList',
+  name: 'ItemList',
   data() {
     return {
       items: []
