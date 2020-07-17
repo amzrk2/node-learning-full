@@ -12,6 +12,11 @@ async function modelNameMiddleware(req, res, next) {
   next();
 }
 
+// 文件上传中间件
+const multer = require('multer');
+const path = require('path');
+const uploadMiddleware = multer({ dest: path.resolve(__dirname, '../../uploads') });
+
 module.exports = (app) => {
   router.post('/', async (req, res) => {
     const model = await req.Model.create(req.body);
@@ -39,5 +44,14 @@ module.exports = (app) => {
     const model = await req.Model.findByIdAndDelete(req.params.id);
     res.send(model);
   });
+
+  // 通用 CRUD 接口
   app.use('/admin/api/rest/:resource', modelNameMiddleware, router);
+
+  // 文件上传接口
+  // single('file') 接受单个文件 字段名为 file (element 上传模块定义)
+  app.use('/admin/api/upload', uploadMiddleware.single('file'), async (req, res) => {
+    const file = req.file;
+    res.send(file);
+  });
 };
