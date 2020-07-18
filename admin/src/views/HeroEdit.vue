@@ -100,6 +100,9 @@
               <el-form-item label="技能提示">
                 <el-input type="textarea" v-model="item.tips"></el-input>
               </el-form-item>
+              <el-form-item>
+                <el-button size="small" type="danger" @click="handleSkillDelete(index)">删除</el-button>
+              </el-form-item>
             </el-col>
           </el-row>
         </el-tab-pane>
@@ -166,6 +169,11 @@ export default {
       console.log(res);
       if (this.model.skills[index]) {
         this.$set(this.model.skills[index], 'icon', res.url);
+      }
+    },
+    handleSkillDelete(index) {
+      if (index >= 0) {
+        this.model.skills.splice(index, 1);
       }
     },
     async fetchAllHeroCategories() {
