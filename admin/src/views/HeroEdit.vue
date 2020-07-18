@@ -71,10 +71,15 @@
           <el-button class="skill-add-btn" @click="model.skills.push({})">
             <i class="el-icon-plus"></i>添加技能
           </el-button>
-          <el-divider class="skill-add-btn"></el-divider>
+          <el-divider></el-divider>
           <el-row type="flex" class="skill-row">
             <!-- all skills -->
-            <el-col :md="12" v-for="(item, index) in model.skills" :key="`skill-${index}`">
+            <el-col
+              class="skill-item"
+              :md="12"
+              v-for="(item, index) in model.skills"
+              :key="`skill-${index}`"
+            >
               <el-form-item label="技能名称">
                 <el-input v-model="item.name"></el-input>
               </el-form-item>
@@ -83,7 +88,7 @@
                   class="avatar-uploader"
                   :action="`${$http.defaults.baseURL}/upload`"
                   :show-file-list="false"
-                  :on-success="afterUpload"
+                  :on-success="(res) => { return afterSkillUpload(res, index) }"
                 >
                   <img v-if="item.icon" :src="item.icon" class="avatar" />
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -157,6 +162,12 @@ export default {
     afterUpload(res) {
       this.model.avatar = res.url;
     },
+    afterSkillUpload(res, index) {
+      console.log(res);
+      if (this.model.skills[index]) {
+        this.$set(this.model.skills[index], 'icon', res.url);
+      }
+    },
     async fetchAllHeroCategories() {
       const res = await this.$http.get(`/rest/categories`);
       this.allHeroCategories = res.data;
@@ -223,5 +234,10 @@ export default {
 
 .skill-row {
   flex-wrap: wrap;
+}
+
+.skill-item {
+  border-bottom: 1px solid #dcdfe6;
+  margin-bottom: 1.5rem;
 }
 </style>
