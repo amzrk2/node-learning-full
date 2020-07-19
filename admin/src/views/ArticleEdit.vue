@@ -15,6 +15,9 @@
       <el-form-item label="标题">
         <el-input v-model="model.title"></el-input>
       </el-form-item>
+      <el-form-item label="文章内容">
+        <quill-editor v-model="model.body" :options="editorOption" />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
       </el-form-item>
@@ -23,15 +26,26 @@
 </template>
 
 <script>
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+import { quillEditor } from 'vue-quill-editor';
+
 export default {
   name: 'ArticleEdit',
   props: {
     id: String
   },
+  components: {
+    quillEditor
+  },
   data() {
     return {
       model: {},
-      categories: []
+      categories: [],
+      editorOption: {
+        // Some Quill options...
+      }
     };
   },
   methods: {
