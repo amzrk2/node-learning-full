@@ -16,7 +16,7 @@
         <el-input v-model="model.title"></el-input>
       </el-form-item>
       <el-form-item label="文章内容">
-        <quill-editor v-model="model.body" :options="editorOption" />
+        <vue-editor v-model="model.body" useCustomImageHandler @image-added="handleImageAdded"></vue-editor>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
@@ -26,10 +26,7 @@
 </template>
 
 <script>
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
-import { quillEditor } from 'vue-quill-editor';
+import { VueEditor } from 'vue2-editor';
 
 export default {
   name: 'ArticleEdit',
@@ -37,7 +34,7 @@ export default {
     id: String
   },
   components: {
-    quillEditor
+    VueEditor
   },
   data() {
     return {
@@ -70,6 +67,18 @@ export default {
     async fetchCategories() {
       const res = await this.$http.get(`/rest/categories`);
       this.categories = res.data;
+    },
+    async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
+      const formData = new FormData();
+      // 文件对象上传至 file，对应 multer 接受图片的 FromData 字段
+      formData.append('file', file);
+      try {
+        const res = await this.$http.post('/upload', formData);
+        Editor.insertEmbed(cursorLocation, 'image', res.data.url);
+        resetUploader();
+      } catch (e) {
+        console.error(e);
+      }
     }
   },
   mounted() {

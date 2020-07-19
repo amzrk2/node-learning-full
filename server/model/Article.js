@@ -4,6 +4,7 @@ const schema = new mongoose.Schema({
   title: { type: String },
   // 类型为ID，关联Category模型
   category: { type: mongoose.SchemaTypes.ObjectId, ref: 'Category' },
+  body: { type: String },
 });
 
 module.exports = mongoose.model('Article', schema);

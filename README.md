@@ -21,14 +21,14 @@ Node + Vue + MongoDB 全栈实验项目还原游戏内容发布站，用于完�
 
 管理后台实现：
 
-| 技术 / 库        | 用途             | 项目地址                                           |
-| ---------------- | ---------------- | -------------------------------------------------- |
-| Vue.js           | 基础             | <https://github.com/vuejs/vue>                     |
-| Vue Router       | 路由             | <https://github.com/vuejs/vue-router>              |
-| Element UI       | 方便快速搭建界面 | <https://github.com/ElemeFE/element>               |
-| axios            | ajax             | <https://github.com/axios/axios>                   |
-| normalize.css    | CSS Reset        | <https://github.com/necolas/normalize.css>         |
-| vue-quill-editor | 文章富文本编辑   | <https://github.com/surmon-china/vue-quill-editor> |
+| 技术 / 库     | 用途             | 项目地址                                    |
+| ------------- | ---------------- | ------------------------------------------- |
+| Vue.js        | 基础             | <https://github.com/vuejs/vue>              |
+| Vue Router    | 路由             | <https://github.com/vuejs/vue-router>       |
+| Element UI    | 方便快速搭建界面 | <https://github.com/ElemeFE/element>        |
+| axios         | ajax             | <https://github.com/axios/axios>            |
+| normalize.css | CSS Reset        | <https://github.com/necolas/normalize.css>  |
+| vue2-editor   | 文章富文本编辑   | <https://github.com/davidroyer/vue2-editor> |
 
 ## web
 
