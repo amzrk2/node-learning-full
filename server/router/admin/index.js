@@ -29,9 +29,12 @@ module.exports = (app) => {
   router.get('/', async (req, res) => {
     let queryOptions = {};
     // 当查询 Category 时的特殊处理
-    console.log(req.Model);
     if (req.Model.modelName === 'Category') {
       queryOptions.populate = 'parent'; // populate 根据 parent 内存的 ID 同时查询出 parent 作为对象返回
+    }
+    // 查询文章时
+    if (req.Model.modelName === 'Article') {
+      queryOptions.populate = 'category'; // populate 根据 category 内存的 ID 同时查询出 category 作为对象返回
     }
     const items = await req.Model.find().setOptions(queryOptions).limit(10);
     res.send(items);

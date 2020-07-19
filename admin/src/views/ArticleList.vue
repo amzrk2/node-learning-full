@@ -1,16 +1,16 @@
 <template>
   <div class="category-list">
-    <h2>分类列表</h2>
+    <h2>文章列表</h2>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
-      <el-table-column prop="parent.name" label="父级分类"></el-table-column>
-      <el-table-column prop="name" label="分类名称"></el-table-column>
+      <el-table-column prop="category.name" label="分类"></el-table-column>
+      <el-table-column prop="title" label="标题"></el-table-column>
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
           <el-button
             type="text"
             size="small"
-            @click="$router.push(`/categories/edit/${scope.row._id}`)"
+            @click="$router.push(`/articles/edit/${scope.row._id}`)"
           >编辑</el-button>
           <el-button type="text" size="small" @click="removeCategory(scope.row)">删除</el-button>
         </template>
@@ -29,17 +29,17 @@ export default {
   },
   methods: {
     async fetch() {
-      const res = await this.$http.get('/rest/categories');
+      const res = await this.$http.get('/rest/articles');
       this.items = res.data;
     },
     async removeCategory(row) {
       try {
-        await this.$confirm(`此操作将永久删除分类 ${row.name}`, '提示', {
+        await this.$confirm(`此操作将永久删除文章《${row.title}》`, '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         });
-        const res = await this.$http.delete(`/rest/categories/${row._id}`);
+        const res = await this.$http.delete(`/rest/articles/${row._id}`);
         if (res.status === 200) {
           this.$message({ type: 'success', message: '删除成功' });
           this.fetch();

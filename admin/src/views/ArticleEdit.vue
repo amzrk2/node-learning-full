@@ -3,7 +3,7 @@
     <h2>{{ id?'编辑':'新建' }}文章 {{ id }}</h2>
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item label="分类">
-        <el-select v-model="model.categories" multiple>
+        <el-select v-model="model.category">
           <el-option
             v-for="item of categories"
             :key="item._id"
