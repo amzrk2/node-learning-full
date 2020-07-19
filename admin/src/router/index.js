@@ -62,6 +62,19 @@ const routes = [
         component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ArticleEdit.vue'),
         props: true,
       },
+      {
+        path: '/ads/create',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/AdEdit.vue'),
+      },
+      {
+        path: '/ads/list',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/AdList.vue'),
+      },
+      {
+        path: '/ads/edit/:id',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/AdEdit.vue'),
+        props: true,
+      },
     ],
   },
   {

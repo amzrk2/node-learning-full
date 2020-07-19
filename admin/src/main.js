@@ -14,6 +14,7 @@ import App from './App.vue';
 
 import http from './http';
 Vue.prototype.$http = http;
+import './global-style.scss';
 
 new Vue({
   router,
