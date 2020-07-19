@@ -24,9 +24,11 @@ const fs = require('fs');
 const privateKey = fs.readFileSync(path.resolve(__dirname, '../../../test_key.key'), { encoding: 'utf-8' });
 
 // 校验中间件
+const assert = require('http-assert');
 const validatorMiddleware = require('./validator');
 
 module.exports = (app) => {
+  /* 通用 CRUD 路由接口部分 */
   router.post('/', async (req, res) => {
     const model = await req.Model.create(req.body);
     res.send(model);
@@ -41,7 +43,7 @@ module.exports = (app) => {
     if (req.Model.modelName === 'Category') {
       queryOptions.populate = 'parent'; // populate 根据 parent 内存的 ID 同时查询出 parent 作为对象返回
     }
-    // 查询文章时
+    // 查询文章时的特殊处理
     if (req.Model.modelName === 'Article') {
       queryOptions.populate = 'category'; // populate 根据 category 内存的 ID 同时查询出 category 作为对象返回
     }
@@ -56,10 +58,9 @@ module.exports = (app) => {
     const model = await req.Model.findByIdAndDelete(req.params.id);
     res.send(model);
   });
-  // 通用 CRUD 接口
   app.use('/admin/api/rest/:resource', validatorMiddleware, modelNameMiddleware, router);
 
-  // 文件上传接口
+  /* 文件上传接口 */
   // single('file') 接受单个文件 字段名为 file (element 上传模块定义)
   app.post('/admin/api/upload', uploadMiddleware.single('file'), async (req, res) => {
     const file = req.file;
@@ -67,29 +68,21 @@ module.exports = (app) => {
     res.send(file);
   });
 
-  // 登录接口
+  /* 登录接口 */
   app.post('/admin/api/login', async (req, res) => {
     const { username, password } = req.body;
     // 通过用户名搜索用户
     const UserAdmin = require('../../model/UserAdmin');
     // password 字段设置了默认不获取，需要明确要求获取 password 字段
     const user = await UserAdmin.findOne({ username }).select('+password');
-    if (!user) {
-      // 用户不存在
-      // 此处由前后端统一规定返回错误格式
-      // 一旦发生错误，在 message 字段中返回给前端错误的详情用于显示在提示框内
-      res.status(418);
-      res.send({ message: '茶壶不存在' });
-      return;
-    }
+    // if (!user) {
+    // 用户不存在 此处由前后端统一规定返回错误格式 一旦发生错误，在 message 字段中返回给前端错误的详情用于显示在提示框内
+    //   res.status(418); res.send({ message: '茶壶不存在' }); return;
+    // }
+    assert(user, 418, '茶壶 (用户) 不存在'); /* I'm a teapot */
     // 用户存在则校验密码
     const userValid = bcrypt.compareSync(password, user.password);
-    if (!userValid) {
-      // 密码错误
-      res.status(403);
-      res.send({ message: '密码错误' });
-      return;
-    }
+    assert(userValid, 403, '密码错误'); /* Forbidden */
     // 验证成功返回用户 token
     const token = jwt.sign(
       {
@@ -100,5 +93,15 @@ module.exports = (app) => {
       { algorithm: 'RS256' }
     );
     res.send({ token });
+  });
+
+  // 错误处理
+  // 此处由前后端统一规定返回错误格式
+  // 一旦发生错误，在 message 字段中返回给前端错误的详情用于显示在提示框内
+  app.use(async (err, req, res, next) => {
+    res.status(err.status);
+    res.send({
+      message: err.message,
+    });
   });
 };
