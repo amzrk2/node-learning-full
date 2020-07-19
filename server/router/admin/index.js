@@ -17,6 +17,13 @@ const multer = require('multer');
 const path = require('path');
 const uploadMiddleware = multer({ dest: path.resolve(__dirname, '../../uploads') });
 
+// 密
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const privateKey = fs.readFileSync(path.resolve(__dirname, '../../../test_key.key'), { encoding: 'utf-8' });
+const publicKey = fs.readFileSync(path.resolve(__dirname, '../../../test_key.key.pub'), { encoding: 'utf-8' });
+
 module.exports = (app) => {
   router.post('/', async (req, res) => {
     const model = await req.Model.create(req.body);
@@ -47,15 +54,49 @@ module.exports = (app) => {
     const model = await req.Model.findByIdAndDelete(req.params.id);
     res.send(model);
   });
-
   // 通用 CRUD 接口
   app.use('/admin/api/rest/:resource', modelNameMiddleware, router);
 
   // 文件上传接口
   // single('file') 接受单个文件 字段名为 file (element 上传模块定义)
-  app.use('/admin/api/upload', uploadMiddleware.single('file'), async (req, res) => {
+  app.post('/admin/api/upload', uploadMiddleware.single('file'), async (req, res) => {
     const file = req.file;
     file.url = `http://localhost:3000/uploads/${file.filename}`;
     res.send(file);
+  });
+
+  // 登录接口
+  app.post('/admin/api/login', async (req, res) => {
+    const { username, password } = req.body;
+    // 通过用户名搜索用户
+    const UserAdmin = require('../../model/UserAdmin');
+    // password 字段设置了默认不获取，需要明确要求获取 password 字段
+    const user = await UserAdmin.findOne({ username }).select('+password');
+    if (!user) {
+      // 用户不存在
+      // 此处由前后端统一规定返回错误格式
+      // 一旦发生错误，在 message 字段中返回给前端错误的详情用于显示在提示框内
+      res.status(418);
+      res.send({ message: '茶壶不存在' });
+      return;
+    }
+    // 用户存在则校验密码
+    const userValid = bcrypt.compareSync(password, user.password);
+    if (!userValid) {
+      // 密码错误
+      res.status(403);
+      res.send({ message: '密码错误' });
+      return;
+    }
+    // 验证成功返回用户 token
+    const token = jwt.sign(
+      {
+        _id: user._id, // 用户 ID (MongoDB 提供)
+        username: user.username, // 用户的 username
+      },
+      privateKey,
+      { algorithm: 'RS256' }
+    );
+    res.send({ token });
   });
 };

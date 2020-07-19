@@ -28,8 +28,14 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      console.log(JSON.stringify(this.model));
+    async handleLogin() {
+      const res = await this.$http.post('/login', this.model);
+      try {
+        localStorage.setItem('token', res.data.token);
+      } catch (e) {
+        console.error('Failed to write localStorage', e);
+      }
+      this.$router.push('/');
     }
   }
 };
