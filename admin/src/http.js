@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Vue from 'vue';
+import router from './router';
 
 const http = axios.create({
   baseURL: 'http://localhost:3000/admin/api', // API 地址
@@ -20,6 +21,10 @@ http.interceptors.response.use(
         type: 'error',
         message: err.response.data.message,
       });
+    }
+    // 未登录自动跳转
+    if (err.response.status && err.response.status === 401) {
+      router.push('/login');
     }
     return Promise.reject(err); // 返回一个被 reject 的 Promise
   }
