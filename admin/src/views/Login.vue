@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
+
 export default {
   name: 'Login',
   data() {
@@ -31,9 +33,9 @@ export default {
     async handleLogin() {
       const res = await this.$http.post('/login', this.model);
       try {
-        localStorage.setItem('token', res.data.token);
+        Cookies.set('token', res.data.token, { sameSite: 'lax', expires: 7 });
       } catch (e) {
-        console.error('Failed to write localStorage', e);
+        console.error('Failed to write Cookies', e);
       }
       this.$router.push('/');
     }

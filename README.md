@@ -8,16 +8,17 @@ Node + Vue + MongoDB 全栈实验项目还原游戏内容发布站，用于完�
 
 服务端接口实现：
 
-| 技术 / 库    | 用途                         | 项目地址                                         |
-| ------------ | ---------------------------- | ------------------------------------------------ |
-| Node.js      | 基础                         | <https://github.com/nodejs/node>                 |
-| Express      | 服务端路由 / 静态文件        | <https://github.com/expressjs/express>           |
-| mongoose     | 数据库模型 / 数据库使用      | <https://github.com/Automattic/mongoose>         |
-| cors         | 跨域                         | <https://github.com/expressjs/cors>              |
-| inflection   | 通用 CRUD 接口类名转换中间件 | <https://github.com/dreamerslab/node.inflection> |
-| multer       | 图片上传                     | <https://github.com/expressjs/multer>            |
-| bcrypt       | 密码加密                     | <https://github.com/kelektiv/node.bcrypt.js>     |
-| jsonwebtoken | 用户登陆验证 token           | <https://www.npmjs.com/package/jsonwebtoken>     |
+| 技术 / 库     | 用途                         | 项目地址                                         |
+| ------------- | ---------------------------- | ------------------------------------------------ |
+| Node.js       | 基础                         | <https://github.com/nodejs/node>                 |
+| Express       | 服务端路由 / 静态文件        | <https://github.com/expressjs/express>           |
+| mongoose      | 数据库模型 / 数据库使用      | <https://github.com/Automattic/mongoose>         |
+| cors          | 跨域                         | <https://github.com/expressjs/cors>              |
+| inflection    | 通用 CRUD 接口类名转换中间件 | <https://github.com/dreamerslab/node.inflection> |
+| multer        | 图片上传                     | <https://github.com/expressjs/multer>            |
+| bcrypt        | 密码加密                     | <https://github.com/kelektiv/node.bcrypt.js>     |
+| jsonwebtoken  | 用户登陆验证 token           | <https://www.npmjs.com/package/jsonwebtoken>     |
+| cookie-parser | 解析 Cookie                  | <https://npmjs.org/package/cookie-parser>        |
 
 ## admin
 
@@ -31,6 +32,7 @@ Node + Vue + MongoDB 全栈实验项目还原游戏内容发布站，用于完�
 | axios         | ajax             | <https://github.com/axios/axios>            |
 | normalize.css | CSS Reset        | <https://github.com/necolas/normalize.css>  |
 | vue2-editor   | 文章富文本编辑   | <https://github.com/davidroyer/vue2-editor> |
+| js-cookie     | 方便写入 Cookies | <https://github.com/js-cookie/js-cookie>    |
 
 ## web
 

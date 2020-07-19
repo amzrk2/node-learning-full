@@ -9,7 +9,7 @@ async function modelNameMiddleware(req, res, next) {
   const modelName = parseModelName(req.params.resource);
   // 挂载 require 的 model 使其能在下一步中以 req.Model 直接使用
   req.Model = require(`../../model/${modelName}`);
-  next();
+  await next();
 }
 
 // 文件上传中间件
@@ -22,7 +22,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const privateKey = fs.readFileSync(path.resolve(__dirname, '../../../test_key.key'), { encoding: 'utf-8' });
-const publicKey = fs.readFileSync(path.resolve(__dirname, '../../../test_key.key.pub'), { encoding: 'utf-8' });
+
+// 校验中间件
+const validatorMiddleware = require('./validator');
 
 module.exports = (app) => {
   router.post('/', async (req, res) => {
@@ -55,7 +57,7 @@ module.exports = (app) => {
     res.send(model);
   });
   // 通用 CRUD 接口
-  app.use('/admin/api/rest/:resource', modelNameMiddleware, router);
+  app.use('/admin/api/rest/:resource', validatorMiddleware, modelNameMiddleware, router);
 
   // 文件上传接口
   // single('file') 接受单个文件 字段名为 file (element 上传模块定义)

@@ -2,7 +2,16 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-app.use(require('cors')());
+app.use(
+  require('cors')({
+    // cors 包支持正则匹配 此时用例如 http://localhost:8080/heroes/list 进行访问时
+    // Access-Control-Allow-Origin 会被设置为 http://localhost:8080
+    // 即可支持接受 Cookie
+    origin: [/localhost/],
+    credentials: true,
+  })
+);
+app.use(require('cookie-parser')());
 app.use(express.json());
 
 // 静态可访问文件
