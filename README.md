@@ -10,6 +10,14 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 
 依据个人情况修改与学习自：<https://github.com/wxs77577/node-vue-moba>。
 
+修改的部分内容：
+
+- 通过 Cookie 实现的权限验证
+- jwt RSA256 基于公钥+密钥的 token 验证
+- 中间件代码分离与整理
+- 部分页面的样式与逻辑设计
+- 部分数据的逻辑设计
+
 ## server
 
 服务端接口实现：
