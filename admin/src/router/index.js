@@ -49,6 +49,19 @@ const routes = [
         component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/HeroEdit.vue'),
         props: true,
       },
+      {
+        path: '/articles/create',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ArticleEdit.vue'),
+      },
+      {
+        path: '/articles/list',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ArticleList.vue'),
+      },
+      {
+        path: '/articles/edit/:id',
+        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ArticleEdit.vue'),
+        props: true,
+      },
     ],
   },
   {
