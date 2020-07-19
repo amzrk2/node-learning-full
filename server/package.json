@@ -10,6 +10,7 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "express": "^5.0.0-alpha.8",
     "inflection": "^1.12.0",
