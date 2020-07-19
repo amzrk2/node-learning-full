@@ -12,15 +12,15 @@ const routes = [
     children: [
       {
         path: '/categories/create',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/CategoryEdit.vue'),
+        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/CategoryEdit.vue'),
       },
       {
         path: '/categories/list',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/CategoryList.vue'),
+        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/CategoryList.vue'),
       },
       {
         path: '/categories/edit/:id',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/CategoryEdit.vue'),
+        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/CategoryEdit.vue'),
         props: true,
       },
       {
@@ -64,15 +64,28 @@ const routes = [
       },
       {
         path: '/ads/create',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/AdEdit.vue'),
+        component: () => import(/* webpackChunkName: "svcmngmt" */ '../views/AdEdit.vue'),
       },
       {
         path: '/ads/list',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/AdList.vue'),
+        component: () => import(/* webpackChunkName: "svcmngmt" */ '../views/AdList.vue'),
       },
       {
         path: '/ads/edit/:id',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/AdEdit.vue'),
+        component: () => import(/* webpackChunkName: "svcmngmt" */ '../views/AdEdit.vue'),
+        props: true,
+      },
+      {
+        path: '/user-admin/create',
+        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/UserAdminEdit.vue'),
+      },
+      {
+        path: '/user-admin/list',
+        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/UserAdminList.vue'),
+      },
+      {
+        path: '/user-admin/edit/:id',
+        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/UserAdminEdit.vue'),
         props: true,
       },
     ],
