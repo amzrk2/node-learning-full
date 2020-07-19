@@ -1,8 +1,14 @@
 # node-learning-full
 
-Node + Vue + MongoDB 全栈实验项目还原游戏内容发布站，用于完整学习详情请见 README。
+Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学习详情请见 README。
 
-依据个人情况修改与学习自：<https://github.com/wxs77577/node-vue-moba>
+重点内容的学习笔记等：
+
+- <https://blog.amzrk2.cc/post/universal-crud-router/>
+- <https://blog.amzrk2.cc/post/login-api-jwt/>
+- 所有注释
+
+依据个人情况修改与学习自：<https://github.com/wxs77577/node-vue-moba>。
 
 ## server
 

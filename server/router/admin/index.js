@@ -1,31 +1,22 @@
 const express = require('express');
-const router = express.Router({ mergeParams: true });
-// mergeParams 使路由内可访问自身 req.params.resource
+const router = express.Router({ mergeParams: true }); // mergeParams 使路由内可访问自身 req.params.resource
+const path = require('path');
+const assert = require('http-assert');
 
-// 小写复数形式转为单数大写类名形式
-const parseModelName = require('inflection').classify;
 // 获取类名转换中间件
-async function modelNameMiddleware(req, res, next) {
-  const modelName = parseModelName(req.params.resource);
-  // 挂载 require 的 model 使其能在下一步中以 req.Model 直接使用
-  req.Model = require(`../../model/${modelName}`);
-  await next();
-}
+const modelNameMiddleware = require('./classify');
 
 // 文件上传中间件
 const multer = require('multer');
-const path = require('path');
 const uploadMiddleware = multer({ dest: path.resolve(__dirname, '../../uploads') });
 
 // 密
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const privateKey = fs.readFileSync(path.resolve(__dirname, '../../../test_key.key'), { encoding: 'utf-8' });
+const { privateKey } = require('../../keys');
 
 // 校验中间件
-const assert = require('http-assert');
-const validatorMiddleware = require('./validator');
+const validatorMiddleware = require('./validator')({ modelName: 'UserAdmin' });
 
 module.exports = (app) => {
   /* 通用 CRUD 路由接口部分 */
@@ -62,7 +53,7 @@ module.exports = (app) => {
 
   /* 文件上传接口 */
   // single('file') 接受单个文件 字段名为 file (element 上传模块定义)
-  app.post('/admin/api/upload', uploadMiddleware.single('file'), async (req, res) => {
+  app.post('/admin/api/upload', validatorMiddleware, uploadMiddleware.single('file'), async (req, res) => {
     const file = req.file;
     file.url = `http://localhost:3000/uploads/${file.filename}`;
     res.send(file);
