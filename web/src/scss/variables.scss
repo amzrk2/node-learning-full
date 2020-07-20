@@ -1,6 +1,5 @@
 // FONTS
-$base-font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, 'PingFang SC',
-  'Hiragino Sans GB', 'Source Han Sans CN', 'Source Han Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+$base-font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, STHeiTi, '微软雅黑', sans-serif;
 
 /*
 .font-xs: 10px
@@ -11,6 +10,7 @@ $base-font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica 
 */
 $base-font-size: 50px;
 $font-sizes: (
+  'xxs': 0.16rem,
   'xs': 0.2rem,
   'sm': 0.24rem,
   'md': 0.26rem,
@@ -118,48 +118,48 @@ $aligns: (left, center, right);
   flex-shrink: 0;
 }
 
-// SPACING
-$spc-types: (
-  'm': margin,
-  'p': padding,
-);
-$spc-base-size: 0.26rem; // 13px same as .font-md
-$spc-levels: (
-  '0': 0,
-  '1': 0.25,
-  '2': 0.5,
-  '3': 1,
-  '4': 1.5,
-  '5': 3,
-);
-$spc-directions: (
-  't': top,
-  'r': right,
-  'b': bottom,
-  'l': left,
-);
-@each $typeKey, $typeValue in $spc-types {
-  @each $levelKey, $levelValue in $spc-levels {
-    /* m-1 p-1 */
-    .#{$typeKey}-#{$levelKey} {
-      #{$typeValue}: $levelValue * $spc-base-size;
-    }
-    /* mx-1 py-1 */
-    .#{$typeKey}x-#{$levelKey} {
-      #{$typeValue}-left: $levelValue * $spc-base-size;
-      #{$typeValue}-right: $levelValue * $spc-base-size;
-    }
-    .#{$typeKey}y-#{$levelKey} {
-      #{$typeValue}-top: $levelValue * $spc-base-size;
-      #{$typeValue}-bottom: $levelValue * $spc-base-size;
-    }
-  }
-  /* mt-1 pr-1 mb-2 pl-3 */
-  @each $dirKey, $dirValue in $spc-directions {
-    @each $levelKey, $levelValue in $spc-levels {
-      .#{$typeKey}#{$dirKey}-#{$levelKey} {
-        #{$typeValue}-#{$dirValue}: $levelValue * $spc-base-size;
-      }
-    }
-  }
-}
+// // SPACING
+// $spc-types: (
+//   'm': margin,
+//   'p': padding,
+// );
+// $spc-base-size: 0.26rem; // 13px same as .font-md
+// $spc-levels: (
+//   '0': 0,
+//   '1': 0.25,
+//   '2': 0.5,
+//   '3': 1,
+//   '4': 1.5,
+//   '5': 3,
+// );
+// $spc-directions: (
+//   't': top,
+//   'r': right,
+//   'b': bottom,
+//   'l': left,
+// );
+// @each $typeKey, $typeValue in $spc-types {
+//   @each $levelKey, $levelValue in $spc-levels {
+//     /* m-1 p-1 */
+//     .#{$typeKey}-#{$levelKey} {
+//       #{$typeValue}: $levelValue * $spc-base-size;
+//     }
+//     /* mx-1 py-1 */
+//     .#{$typeKey}x-#{$levelKey} {
+//       #{$typeValue}-left: $levelValue * $spc-base-size;
+//       #{$typeValue}-right: $levelValue * $spc-base-size;
+//     }
+//     .#{$typeKey}y-#{$levelKey} {
+//       #{$typeValue}-top: $levelValue * $spc-base-size;
+//       #{$typeValue}-bottom: $levelValue * $spc-base-size;
+//     }
+//   }
+//   /* mt-1 pr-1 mb-2 pl-3 */
+//   @each $dirKey, $dirValue in $spc-directions {
+//     @each $levelKey, $levelValue in $spc-levels {
+//       .#{$typeKey}#{$dirKey}-#{$levelKey} {
+//         #{$typeValue}-#{$dirValue}: $levelValue * $spc-base-size;
+//       }
+//     }
+//   }
+// }
