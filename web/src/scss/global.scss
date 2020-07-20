@@ -1,0 +1,22 @@
+@import './variable.scss';
+
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html,
+body {
+  font-size: $base-font-size;
+  font-family: $base-font-family;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
