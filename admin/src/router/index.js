@@ -27,9 +27,6 @@ const routes = [
         path: '/',
         name: 'Intro',
         component: () => import(/* webpackChunkName: "login" */ '../views/Intro.vue'),
-        meta: {
-          isPublic: true,
-        },
       },
       ...content,
       ...service,

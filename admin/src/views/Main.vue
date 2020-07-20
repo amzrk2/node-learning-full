@@ -52,15 +52,11 @@
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <el-dropdown>
-          <i class="el-icon-setting" style="margin-right: 15px"></i>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item v-if="userdata.username">注销</el-dropdown-item>
-            <el-dropdown-item v-else>登录</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <span v-if="userdata.username">{{ userdata.username }}</span>
-        <span v-else>请先登录</span>
+        <template v-if="userdata.username">
+          <el-button type="text" @click="handleExit">注销</el-button>
+          <span class="username">{{ userdata.username }}</span>
+        </template>
+        <el-button type="text" v-else @click="$router.push('/login')">请先登录</el-button>
       </el-header>
 
       <el-main>
@@ -71,6 +67,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie';
+
 export default {
   name: 'Main',
   data() {
@@ -80,6 +78,14 @@ export default {
         userid: ''
       }
     };
+  },
+  methods: {
+    handleExit() {
+      this.userdata = { username: '', userid: '' };
+      this.$store.commit('modUserData', this.userdata);
+      Cookies.remove('token');
+      this.$router.push('/login');
+    }
   },
   async mounted() {
     // 获取用户信息回显数据
@@ -104,5 +110,9 @@ export default {
 
 .main-container {
   height: 100vh;
+}
+
+.username {
+  margin-left: 1rem;
 }
 </style>
