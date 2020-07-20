@@ -23,6 +23,7 @@
                 class="avatar-uploader"
                 :action="`${$http.defaults.baseURL}/upload`"
                 :show-file-list="false"
+                with-credentials
                 :on-success="(res) => { return afterItemUpload(res, index) }"
               >
                 <img v-if="item.image" :src="item.image" class="avatar" />
