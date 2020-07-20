@@ -19,6 +19,8 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 - 部分数据的逻辑设计
 - 登录用户信息回显
 - 注销账户功能
+- CSS Reset: normalize.css
+- 大量移动端页面的 CSS 实现方法
 
 ## server
 

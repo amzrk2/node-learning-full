@@ -5,9 +5,12 @@
   outline: none;
 }
 
-html,
-body {
+html {
   font-size: $base-font-size;
+}
+
+body {
+  font-size: map-get($font-sizes, 'md');
   font-family: $base-font-family;
 
   a {

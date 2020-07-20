@@ -1,3 +1,60 @@
-$base-font-size: 14px;
+// FONTS
 $base-font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, 'PingFang SC',
   'Hiragino Sans GB', 'Source Han Sans CN', 'Source Han Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+
+/*
+.font-xs: 10px
+.font-sm: 12px
+.font-md: 13px
+.font-lg: 14px
+.font-xl: 16px
+*/
+$base-font-size: 50px;
+$font-sizes: (
+  'xs': 0.2rem,
+  'sm': 0.24rem,
+  'md': 0.26rem,
+  'lg': 0.28rem,
+  'xl': 0.32rem,
+);
+@each $key, $value in $font-sizes {
+  .font-#{$key} {
+    font-size: $value;
+  }
+}
+
+// COLORS
+/*
+.color-primary: #db9e3f
+.color-bg-primary: #db9e3f
+*/
+$colors: (
+  'primary': #db9e3f,
+  'white': #fff,
+  'grey': #999,
+  'bg': #ededed,
+  'dark': #212222,
+  'black': #000,
+  'info': #1e96ab,
+  'hot': #ff3636,
+  'race': #4d9cff,
+);
+@each $key, $value in $colors {
+  .color-#{$key} {
+    color: $value;
+  }
+  .color-bg-#{$key} {
+    background-color: $value;
+  }
+}
+
+// ALIGN
+/*
+.text-left: left
+*/
+$aligns: (left, center, right);
+@each $value in $aligns {
+  .text-#{$value} {
+    text-align: $value;
+  }
+}
