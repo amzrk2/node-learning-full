@@ -22,7 +22,19 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main,
-    children: [...content, ...service, ...system],
+    children: [
+      {
+        path: '/',
+        name: 'Intro',
+        component: () => import(/* webpackChunkName: "login" */ '../views/Intro.vue'),
+        meta: {
+          isPublic: true,
+        },
+      },
+      ...content,
+      ...service,
+      ...system,
+    ],
   },
 ];
 

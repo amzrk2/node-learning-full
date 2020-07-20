@@ -86,13 +86,26 @@ module.exports = (app) => {
     res.send({ token });
   });
 
+  /* 接受 token 的信息回显接口 */
+  app.post('/admin/api/user', validatorMiddleware, async (req, res) => {
+    res.send(req.user);
+  });
+
   // 错误处理
   // 此处由前后端统一规定返回错误格式
   // 一旦发生错误，在 message 字段中返回给前端错误的详情用于显示在提示框内
   app.use(async (err, req, res, next) => {
-    res.status(err.status);
-    res.send({
-      message: err.message,
-    });
+    if (err.status && err.message) {
+      res.status(err.status);
+      res.send({
+        message: err.message,
+      });
+    } else {
+      console.log(err);
+      res.status(500);
+      res.send({
+        message: 'Internal Server Error',
+      });
+    }
   });
 };

@@ -55,12 +55,12 @@
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
+            <el-dropdown-item v-if="userdata.username">注销</el-dropdown-item>
+            <el-dropdown-item v-else>登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>王小虎</span>
+        <span v-if="userdata.username">{{ userdata.username }}</span>
+        <span v-else>请先登录</span>
       </el-header>
 
       <el-main>
@@ -74,14 +74,19 @@
 export default {
   name: 'Main',
   data() {
-    const item = {
-      date: '2016-05-02',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    };
     return {
-      tableData: Array(20).fill(item)
+      userdata: {
+        username: '',
+        userid: ''
+      }
     };
+  },
+  async mounted() {
+    // 获取用户信息回显数据
+    const res = await this.$http.post('/user');
+    this.userdata.username = res.data.username;
+    this.userdata.userid = res.data._id;
+    this.$store.commit('modUserData', this.userdata);
   }
 };
 </script>
