@@ -25,8 +25,7 @@ $font-sizes: (
 
 // COLORS
 /*
-.color-primary: #db9e3f
-.color-bg-primary: #db9e3f
+.color-primary .color-bg-primary
 */
 $colors: (
   'primary': #db9e3f,
@@ -50,11 +49,71 @@ $colors: (
 
 // ALIGN
 /*
-.text-left: left
+.text-left .text-center .text-right
 */
 $aligns: (left, center, right);
 @each $value in $aligns {
   .text-#{$value} {
     text-align: $value;
   }
+}
+
+// FLEXBOX
+/*
+.d-flex
+*/
+.d-flex {
+  display: flex;
+}
+/*
+.flex-row .flex-col
+*/
+@each $key, $value in ('row': row, 'col': column) {
+  .flex-#{$key} {
+    flex-direction: $value;
+  }
+}
+/*
+.flex-wrap
+*/
+.flex-wrap {
+  flex-wrap: wrap;
+}
+/*
+.flex-j-start   .flex-j-center .flex-j-end
+.flex-j-between .flex-j-around .flex-j-evenly
+*/
+@each $key,
+  $value
+    in (
+      'start': flex-start,
+      'center': center,
+      'end': flex-end,
+      'between': space-between,
+      'around': space-around,
+      'evenly': space-evenly
+    )
+{
+  .flex-j-#{$key} {
+    justify-content: $value;
+  }
+}
+/*
+.flex-a-start   .flex-a-center .flex-a-end
+.flex-a-baseline .flex-a-stretch
+*/
+@each $key, $value in ('start': flex-start, 'center': center, 'end': flex-end, 'baseline': baseline, 'stretch': stretch)
+{
+  .flex-a-#{$key} {
+    align-items: $value;
+  }
+}
+/*
+.flex-grow .flex-noshrink
+*/
+.flex-grow {
+  flex-grow: 1;
+}
+.flex-noshrink {
+  flex-shrink: 0;
 }
