@@ -1,99 +1,28 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Cookies from 'js-cookie';
 import Main from '../views/Main.vue';
 
 Vue.use(VueRouter);
+
+import content from './content';
+import service from './service';
+import system from './system';
 
 const routes = [
   {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    meta: {
+      isPublic: true,
+    },
   },
   {
     path: '/',
     name: 'Main',
     component: Main,
-    children: [
-      {
-        path: '/categories/create',
-        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/CategoryEdit.vue'),
-      },
-      {
-        path: '/categories/list',
-        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/CategoryList.vue'),
-      },
-      {
-        path: '/categories/edit/:id',
-        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/CategoryEdit.vue'),
-        props: true,
-      },
-      {
-        path: '/items/create',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ItemEdit.vue'),
-      },
-      {
-        path: '/items/list',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ItemList.vue'),
-      },
-      {
-        path: '/items/edit/:id',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ItemEdit.vue'),
-        props: true,
-      },
-      {
-        path: '/heroes/create',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/HeroEdit.vue'),
-      },
-      {
-        path: '/heroes/list',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/HeroList.vue'),
-      },
-      {
-        path: '/heroes/edit/:id',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/HeroEdit.vue'),
-        props: true,
-      },
-      {
-        path: '/articles/create',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ArticleEdit.vue'),
-      },
-      {
-        path: '/articles/list',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ArticleList.vue'),
-      },
-      {
-        path: '/articles/edit/:id',
-        component: () => import(/* webpackChunkName: "cttmngmt" */ '../views/ArticleEdit.vue'),
-        props: true,
-      },
-      {
-        path: '/ads/create',
-        component: () => import(/* webpackChunkName: "svcmngmt" */ '../views/AdEdit.vue'),
-      },
-      {
-        path: '/ads/list',
-        component: () => import(/* webpackChunkName: "svcmngmt" */ '../views/AdList.vue'),
-      },
-      {
-        path: '/ads/edit/:id',
-        component: () => import(/* webpackChunkName: "svcmngmt" */ '../views/AdEdit.vue'),
-        props: true,
-      },
-      {
-        path: '/user-admin/create',
-        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/UserAdminEdit.vue'),
-      },
-      {
-        path: '/user-admin/list',
-        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/UserAdminList.vue'),
-      },
-      {
-        path: '/user-admin/edit/:id',
-        component: () => import(/* webpackChunkName: "sysmngmt" */ '../views/UserAdminEdit.vue'),
-        props: true,
-      },
-    ],
+    children: [...content, ...service, ...system],
   },
 ];
 
@@ -101,6 +30,19 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  // If need auth
+  if (!to.meta.isPublic && !Cookies.get('token')) {
+    Vue.prototype.$message({
+      type: 'error',
+      message: '未登陆账户',
+    });
+    next('/login');
+  } else {
+    next();
+  }
 });
 
 export default router;
