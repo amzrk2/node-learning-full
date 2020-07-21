@@ -2,22 +2,22 @@
   <div class="home">
     <ad-swiper />
     <nav-icons />
-    <slot-card :card-data="cardData1">啊啊啊</slot-card>
-    <slot-card :card-data="cardData2">不不不</slot-card>
+    <slot-list-card :card-data="cardData1"></slot-list-card>
+    <slot-list-card :card-data="cardData2"></slot-list-card>
   </div>
 </template>
 
 <script>
 import AdSwiper from '@/components/home/AdSwiper.vue';
 import NavIcons from '@/components/home/NavIcons.vue';
-import SlotCard from '@/components/SlotCard.vue';
+import SlotListCard from '@/components/SlotListCard.vue';
 
 export default {
   name: 'Home',
   components: {
     AdSwiper,
     NavIcons,
-    SlotCard
+    SlotListCard
   },
   data() {
     return {
