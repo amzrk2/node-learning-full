@@ -51,7 +51,7 @@ export default {
 
       &.router-link-exact-active span {
         padding: 0.05rem 0;
-        border-bottom: 3px solid #fff;
+        border-bottom: 3px solid map-get($colors, 'white');
       }
     }
   }

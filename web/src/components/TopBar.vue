@@ -55,7 +55,7 @@ export default {
 
   p {
     margin-top: 0.1rem;
-    color: #666;
+    color: map-get($colors, 'grey');
   }
 }
 

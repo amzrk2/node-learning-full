@@ -10,8 +10,10 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 
 依据个人情况修改与学习自：<https://github.com/wxs77577/node-vue-moba>。
 
-修改的部分内容：
+自行修改的内容：
 
+- 大量移动端页面的 CSS 实现方法
+- CSS Reset: normalize.css
 - 通过 Cookie 实现的权限验证
 - jwt RSA256 基于公钥+密钥的 token 验证
 - 中间件代码分离与整理
@@ -19,8 +21,6 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 - 部分数据的逻辑设计
 - 登录用户信息回显
 - 注销账户功能
-- CSS Reset: normalize.css
-- 大量移动端页面的 CSS 实现方法
 
 ## server
 
@@ -56,9 +56,10 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 
 移动端展示页面实现：
 
-| 技术 / 库     | 用途      | 项目地址                                   |
-| ------------- | --------- | ------------------------------------------ |
-| Vue.js        | 基础      | <https://github.com/vuejs/vue>             |
-| Vue Router    | 路由      | <https://github.com/vuejs/vue-router>      |
-| axios         | ajax      | <https://github.com/axios/axios>           |
-| normalize.css | CSS Reset | <https://github.com/necolas/normalize.css> |
+| 技术 / 库          | 用途      | 项目地址                                             |
+| ------------------ | --------- | ---------------------------------------------------- |
+| Vue.js             | 基础      | <https://github.com/vuejs/vue>                       |
+| Vue Router         | 路由      | <https://github.com/vuejs/vue-router>                |
+| axios              | ajax      | <https://github.com/axios/axios>                     |
+| normalize.css      | CSS Reset | <https://github.com/necolas/normalize.css>           |
+| vue-awesome-swiper | 幻灯片    | <https://github.com/surmon-china/vue-awesome-swiper> |
