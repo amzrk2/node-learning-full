@@ -1,17 +1,14 @@
 <template>
-  <div class="topbar color-bg-dark">
+  <div class="spirit topbar">
     <div class="topbar-wrapper d-flex">
-      <img src="../assets/logo.png" />
+      <a class="spirit logo-small" href="/"></a>
       <div class="topbar-title">
         <h1 class="color-white font-md">王者荣耀</h1>
         <p class="color-white font-xxs">团队成就更多</p>
       </div>
       <div class="flex-grow"></div>
-      <div class="download color-bg-primary">
-        <a
-          class="download-btn text-center font-sm"
-          href="//pvp.qq.com/zlkdatasys/mct/d/play.shtml"
-        >立即下载</a>
+      <div class="download">
+        <a class="spirit download" href="//pvp.qq.com/zlkdatasys/mct/d/play.shtml"></a>
       </div>
     </div>
   </div>
@@ -32,17 +29,12 @@ export default {
   height: 0.9rem;
   z-index: 20;
   display: block;
-  padding: 0.1375rem 0.4rem;
+  padding: 0.1375rem 0.3rem;
 }
 
 .topbar-wrapper {
   height: 100%;
   width: 100%;
-
-  img {
-    display: block;
-    width: 0.65rem;
-  }
 }
 
 .topbar-title {
@@ -59,16 +51,7 @@ export default {
   }
 }
 
-.download {
-  border-radius: 0.05rem;
-  width: 1.35rem;
-  height: 0.55rem;
-
-  a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    line-height: 0.55rem;
-  }
+.download a {
+  margin-top: 0.05rem;
 }
 </style>

@@ -5,6 +5,24 @@
   background-size: 7.5rem 9.1rem; // 750/2 = 375px same as iPhone 6/7/8
   display: inline-block;
 
+  // Topbar
+  &.topbar {
+    width: 7.5rem;
+    height: 0.9rem;
+    background-position: 0 87.195%;
+  }
+  &.logo-small {
+    width: 0.6rem;
+    height: 0.6rem;
+    background-position: 0 72.588%;
+  }
+  &.download {
+    width: 1.2rem;
+    height: 0.48rem;
+    background-position: 18.73% 71.694%;
+  }
+
+  // Nav icons
   &.blz {
     width: 0.46rem;
     height: 0.4rem;
