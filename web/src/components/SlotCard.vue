@@ -1,8 +1,8 @@
 <template>
   <div class="card color-bg-white">
     <div class="card-header font-xl d-flex flex-a-center">
-      <i :class="cardData.icon"></i>
-      <span>{{ cardData.title }}</span>
+      <i :class="icon"></i>
+      <span>{{ title }}</span>
       <div class="flex-grow"></div>
       <i class="spirit dots"></i>
     </div>
@@ -15,17 +15,9 @@
 <script>
 export default {
   name: 'SlotCard',
-  /**
-   * cardData: {
-   *   title: 卡片标题
-   *   icon: 卡片图标类
-   * }
-   */
   props: {
-    cardData: {
-      type: Object,
-      required: true
-    } // 卡片数据对象
+    title: String, // 卡片标题
+    icon: String // 卡片图标
   }
 };
 </script>
