@@ -29,10 +29,10 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  height: 1rem;
+  height: 0.9rem;
   z-index: 20;
   display: block;
-  padding: 0.1875rem 0.4rem;
+  padding: 0.1375rem 0.4rem;
 }
 
 .topbar-wrapper {

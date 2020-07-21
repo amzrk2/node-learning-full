@@ -6,8 +6,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Main', // 首页架构
+    path: '/', // 首页架构
     component: Main,
     children: [
       {
