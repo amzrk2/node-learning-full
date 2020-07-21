@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main color-bg-bg">
     <top-bar />
     <nav-bar />
     <div class="content">

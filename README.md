@@ -14,6 +14,7 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 
 - 大量移动端页面的 CSS 实现方法
 - CSS Reset: normalize.css
+- Spirit 图片的部分应用
 - 通过 Cookie 实现的权限验证
 - jwt RSA256 基于公钥+密钥的 token 验证
 - 中间件代码分离与整理
