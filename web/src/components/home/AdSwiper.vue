@@ -40,7 +40,6 @@ export default {
 
 <style lang="scss" scoped>
 .home-swiper {
-  width: 100vw;
   height: 42.5vw;
 
   img {
