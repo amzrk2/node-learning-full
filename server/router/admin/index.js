@@ -37,8 +37,6 @@ module.exports = (app) => {
     // 查询文章时的特殊处理
     if (req.Model.modelName === 'Article') {
       queryOptions.populate = 'category'; // populate 根据 category 内存的 ID 同时查询出 category 作为对象返回
-      // 挂载 Category 的 model 规避 Schema hasn't been registered for model "Category" 问题
-      require('../../model/Category');
     }
     const items = await req.Model.find().setOptions(queryOptions).limit(100);
     res.send(items);

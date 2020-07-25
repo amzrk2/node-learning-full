@@ -39,6 +39,7 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 | bcrypt        | 密码加密                     | <https://github.com/kelektiv/node.bcrypt.js>     |
 | jsonwebtoken  | 用户登陆验证 token           | <https://www.npmjs.com/package/jsonwebtoken>     |
 | cookie-parser | 解析 Cookie                  | <https://npmjs.org/package/cookie-parser>        |
+| require-all   | 快速导入所有模型             | <https://www.npmjs.com/package/require-all>      |
 
 ## admin
 
