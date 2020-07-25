@@ -60,7 +60,7 @@
       </el-header>
 
       <el-main>
-        <router-view />
+        <router-view :key="$route.path" />
       </el-main>
     </el-container>
   </el-container>
@@ -75,8 +75,8 @@ export default {
     return {
       userdata: {
         username: '',
-        userid: ''
-      }
+        userid: '',
+      },
     };
   },
   methods: {
@@ -85,7 +85,7 @@ export default {
       this.$store.commit('modUserData', this.userdata);
       Cookies.remove('token');
       this.$router.push('/login');
-    }
+    },
   },
   async mounted() {
     // 获取用户信息回显数据
@@ -93,7 +93,7 @@ export default {
     this.userdata.username = res.data.username;
     this.userdata.userid = res.data._id;
     this.$store.commit('modUserData', this.userdata);
-  }
+  },
 };
 </script>
 
