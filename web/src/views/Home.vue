@@ -13,7 +13,7 @@
           <span class="news-tag color-grey">[{{ item.category.name }}]</span>
           <span class="news-divid">|</span>
           <span class="news-title">{{ item.title }}</span>
-          <span class="news-date font-sm color-grey">{{ item.createdAt }}</span>
+          <span class="news-date font-sm color-grey">{{ item.createdAt | date }}</span>
         </div>
       </template>
     </slot-list-card>
@@ -25,6 +25,7 @@
 import AdSwiper from '@/components/home/AdSwiper.vue';
 import NavIcons from '@/components/home/NavIcons.vue';
 import SlotListCard from '@/components/SlotListCard.vue';
+import dayjs from 'dayjs';
 
 export default {
   name: 'Home',
@@ -84,6 +85,15 @@ export default {
       ],
       newsData: [],
     };
+  },
+  filters: {
+    date(val) {
+      if (val) {
+        return dayjs(val).format('MM/DD');
+      } else {
+        return '00/00';
+      }
+    },
   },
   methods: {
     async fetchNewsData() {

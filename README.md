@@ -59,10 +59,11 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 
 移动端展示页面实现：
 
-| 技术 / 库          | 用途      | 项目地址                                             |
-| ------------------ | --------- | ---------------------------------------------------- |
-| Vue.js             | 基础      | <https://github.com/vuejs/vue>                       |
-| Vue Router         | 路由      | <https://github.com/vuejs/vue-router>                |
-| axios              | ajax      | <https://github.com/axios/axios>                     |
-| normalize.css      | CSS Reset | <https://github.com/necolas/normalize.css>           |
-| vue-awesome-swiper | 幻灯片    | <https://github.com/surmon-china/vue-awesome-swiper> |
+| 技术 / 库          | 用途       | 项目地址                                             |
+| ------------------ | ---------- | ---------------------------------------------------- |
+| Vue.js             | 基础       | <https://github.com/vuejs/vue>                       |
+| Vue Router         | 路由       | <https://github.com/vuejs/vue-router>                |
+| axios              | ajax       | <https://github.com/axios/axios>                     |
+| normalize.css      | CSS Reset  | <https://github.com/necolas/normalize.css>           |
+| vue-awesome-swiper | 幻灯片     | <https://github.com/surmon-china/vue-awesome-swiper> |
+| dayjs              | 时间格式化 | <https://www.npmjs.com/package/dayjs>                |
