@@ -7,7 +7,7 @@
           :key="`tag-${index}`"
           :class="['nav-item', { active: index === curTag }]"
         >
-          <a href="/">
+          <a @click="handleSlideClick(index)">
             <span>{{ item.name }}</span>
           </a>
         </li>
@@ -50,10 +50,17 @@ export default {
     };
   },
   methods: {
+    // 滑动切换
     handleSlideChange() {
       if (this.$refs.cardSwiper && this.$refs.cardSwiper.$swiper) {
         let index = this.$refs.cardSwiper.$swiper.activeIndex || 0;
         this.curTag = index;
+      }
+    },
+    // 点击切换
+    handleSlideClick(index) {
+      if (this.$refs.cardSwiper && this.$refs.cardSwiper.$swiper) {
+        this.$refs.cardSwiper.$swiper.slideTo(index);
       }
     },
   },
@@ -66,6 +73,7 @@ export default {
     a {
       padding: 0.05rem 0;
       border-bottom: 3px solid transparent;
+      cursor: pointer;
     }
     // active 选项高亮
     &.active a {
