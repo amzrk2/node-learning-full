@@ -18,6 +18,7 @@ app.use(express.json());
 app.use('/uploads', express.static(path.resolve(__dirname, 'uploads')));
 require('./plugin/db')(app);
 require('./router/admin/index')(app);
+require('./router/web/index')(app);
 
 app.listen(3000, () => {
   console.log('http://localhost:3000');

@@ -40,7 +40,7 @@ module.exports = (app) => {
       // 挂载 Category 的 model 规避 Schema hasn't been registered for model "Category" 问题
       require('../../model/Category');
     }
-    const items = await req.Model.find().setOptions(queryOptions).limit(10);
+    const items = await req.Model.find().setOptions(queryOptions).limit(100);
     res.send(items);
   });
   router.get('/:id', async (req, res) => {
