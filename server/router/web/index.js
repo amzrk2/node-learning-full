@@ -63,9 +63,14 @@ module.exports = (app) => {
           category: { $in: subCats },
         })
         .populate('category') // 关联查询 category 方便下文第四步
-        .limit(4)
+        .limit(50) // 先找出最多50篇
         .lean(), // 这里如果不加 lean() 后文的 forEach() 将无法应用在热门分类的 newsList 数组
     });
+    // 随机任取四篇
+    categories[0].newsList.sort((a, b) => {
+      return Math.random() - 0.5;
+    });
+    categories[0].newsList.length = 4;
 
     // // 4 明文标明每篇文章的所属分类，而不是 _id
     // categories.forEach((category) => {
