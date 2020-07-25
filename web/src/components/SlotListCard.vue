@@ -8,7 +8,7 @@
           :class="['nav-item', { active: index === curTag }]"
         >
           <a href="/">
-            <span>{{ item.category }}</span>
+            <span>{{ item.name }}</span>
           </a>
         </li>
       </ul>
@@ -34,19 +34,19 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    SlotCard
+    SlotCard,
   },
   directives: {
-    swiper: directive
+    swiper: directive,
   },
   props: {
     title: String, // 卡片标题
     icon: String, // 卡片图标
-    cardData: Array // 卡片数据
+    cardData: Array, // 卡片数据
   },
   data() {
     return {
-      curTag: 0
+      curTag: 0,
     };
   },
   methods: {
@@ -55,8 +55,8 @@ export default {
         let index = this.$refs.cardSwiper.$swiper.activeIndex || 0;
         this.curTag = index;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -7,13 +7,13 @@
       <template v-slot:list="{ data }">
         <div
           class="news-line font-lg"
-          v-for="(item, index) of data.list"
+          v-for="(item, index) of data.newsList"
           :key="`list-item-${index}`"
         >
-          <span class="news-tag color-grey">[{{ item.tag }}]</span>
+          <span class="news-tag color-grey">[{{ item.category.name }}]</span>
           <span class="news-divid">|</span>
           <span class="news-title">{{ item.title }}</span>
-          <span class="news-date font-sm color-grey">{{ item.date }}</span>
+          <span class="news-date font-sm color-grey">{{ item.createdAt }}</span>
         </div>
       </template>
     </slot-list-card>
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      newsData: [
+      newsDataOld: [
         {
           category: '热门',
           list: [
@@ -82,7 +82,29 @@ export default {
           ],
         },
       ],
+      newsData: [],
     };
+  },
+  methods: {
+    async fetchNewsData() {
+      const res = await this.$http.get('/news/list');
+      if (res.status === 200) {
+        const data = res.data;
+        // 非热门分类统一设置分类显示名
+        data.forEach((cat) => {
+          if (cat.name !== '热门') {
+            cat.newsList.forEach((article) => {
+              article.category = {};
+              article.category.name = cat.name;
+            });
+          }
+        });
+        this.newsData = data;
+      }
+    },
+  },
+  mounted() {
+    this.fetchNewsData();
   },
 };
 </script>

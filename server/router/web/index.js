@@ -29,25 +29,25 @@ module.exports = (app) => {
       // 2.2 在上一步基础上查找，查找条件为
       // 查找的地点：从 articles 集合内找 (找文章)
       // 匹配的字段：这边的 _id 对应那边 articles 集合内文章的 category (即在所有文章里找 ID 匹配 83d,451,520,521 的)
-      // 存放的数组：放在 newsData 数组内
+      // 存放的数组：放在 newsList 数组内
       {
         $lookup: {
           from: 'articles',
           localField: '_id',
           foreignField: 'category',
-          as: 'newsData',
+          as: 'newsList',
         },
       },
-      // 结果：这一步查询完成之后，在上一步的结果基础上每一项增加了一个 newsData 数组，存放着对应子分类的文章
+      // 结果：这一步查询完成之后，在上一步的结果基础上每一项增加了一个 newsList 数组，存放着对应子分类的文章
 
       // 2.3 在上一步基础上添加字段
-      // 这里其实是从上一步已经有的 newsData 数组内取出四个，在添加回去覆盖为新的 newsData 数组
+      // 这里其实是从上一步已经有的 newsList 数组内取出四个，在添加回去覆盖为新的 newsList 数组
       {
         $addFields: {
-          newsData: { $slice: ['$newsData', 4] },
+          newsList: { $slice: ['$newsList', 4] },
         },
       },
-      // 结果：这一步查询完成之后，在上一步的结果基础上每一项的 newsData 数组只有四个数据了
+      // 结果：这一步查询完成之后，在上一步的结果基础上每一项的 newsList 数组只有四个数据了
     ]);
 
     // 3 添加热门子分类
@@ -58,18 +58,18 @@ module.exports = (app) => {
     // 在所有文章中查找 category 属于这四个子分类的文章，任意四篇
     categories.unshift({
       name: '热门',
-      newsData: await Article.find()
+      newsList: await Article.find()
         .where({
           category: { $in: subCats },
         })
         .populate('category') // 关联查询 category 方便下文第四步
         .limit(4)
-        .lean(), // 这里如果不加 lean() 后文的 forEach() 将无法应用在热门分类的 newsData 数组
+        .lean(), // 这里如果不加 lean() 后文的 forEach() 将无法应用在热门分类的 newsList 数组
     });
 
     // // 4 明文标明每篇文章的所属分类，而不是 _id
     // categories.forEach((category) => {
-    //   category.newsData.forEach((article) => {
+    //   category.newsList.forEach((article) => {
     //     article.tag = 'a';
     //   });
     // });
