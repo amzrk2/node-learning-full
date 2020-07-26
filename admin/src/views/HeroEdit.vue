@@ -64,9 +64,6 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="使用技巧">
-            <el-input type="textarea" v-model="model.ueageTips"></el-input>
-          </el-form-item>
         </el-tab-pane>
         <el-tab-pane label="技能设置" name="skills">
           <el-button class="skill-add-btn" @click="model.skills.push({})">
@@ -90,6 +87,7 @@
                   :action="`${$http.defaults.baseURL}/upload`"
                   :show-file-list="false"
                   :on-success="(res) => { return afterSkillUpload(res, index) }"
+                  with-credentials
                 >
                   <img v-if="item.icon" :src="item.icon" class="avatar" />
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -119,11 +117,11 @@
 export default {
   name: 'HeroEdit',
   props: {
-    id: String
+    id: String,
   },
   data() {
     return {
-      tabSelect: 'skills',
+      tabSelect: 'basic',
       allHeroCategories: [],
       allItems: [],
       model: {
@@ -135,13 +133,12 @@ export default {
           difficult: 0,
           skills: 0,
           attack: 0,
-          survive: 0
+          survive: 0,
         },
         skills: [],
         itemsAdv: [],
         itemsDis: [],
-        ueageTips: ''
-      }
+      },
     };
   },
   methods: {
@@ -156,7 +153,7 @@ export default {
       this.$router.push('/heroes/list');
       this.$message({
         type: 'success',
-        message: '保存成功'
+        message: '保存成功',
       });
     },
     async fetch() {
@@ -184,7 +181,7 @@ export default {
     async fetchAllItems() {
       const res = await this.$http.get(`/rest/items`);
       this.allItems = res.data;
-    }
+    },
   },
   mounted() {
     // 获取分类数据
@@ -195,7 +192,7 @@ export default {
     if (this.id) {
       this.fetch();
     }
-  }
+  },
 };
 </script>
 
