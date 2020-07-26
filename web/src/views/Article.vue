@@ -5,8 +5,27 @@
       <h1 class="font-md">{{ articleData.title }}</h1>
       <span class="font-xs">{{ articleData.createdAt | date }}</span>
     </div>
-    <div class="article-content"></div>
-    <div class="article-about"></div>
+    <div class="article-content font-xl">
+      <div v-html="articleData.body"></div>
+    </div>
+    <div class="article-about">
+      <div class="about-title">
+        <img src="../assets/lin.png" />
+        <h2>相关资讯</h2>
+      </div>
+      <div class="about-info">
+        <router-link
+          tag="div"
+          class="news-line font-lg"
+          v-for="(item, index) of articleRelated"
+          :key="`list-item-${index}`"
+          :to="`/article/${item._id}`"
+        >
+          <span class="news-title">{{ item.title }}</span>
+          <span class="news-date font-sm color-grey">{{ item.createdAt | date }}</span>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,10 +49,11 @@ export default {
   data() {
     return {
       articleData: {
-        title: '',
-        createdAt: '',
+        title: '正在加载文章信息',
+        createdAt: '1970-01-01',
         body: '',
       },
+      articleRelated: [],
     };
   },
   methods: {
@@ -55,11 +75,13 @@ export default {
 
 <style lang="scss" scoped>
 .article {
-  position: relative;
+  min-height: 100vh;
 }
 
 .article-info {
   height: 0.8rem;
+  position: relative;
+  border-bottom: 1px solid map-get($colors, 'grey');
 
   .article-back {
     position: absolute;
@@ -84,6 +106,35 @@ export default {
     flex: 0 0 auto;
     margin-right: 0.3rem;
     line-height: 0.8rem;
+  }
+}
+
+.article-content {
+  padding: 0 0.4rem;
+  line-height: 2;
+}
+
+.article-about {
+  min-height: 5vh;
+
+  .about-title {
+    display: flex;
+    align-items: center;
+    margin-left: 0.45rem;
+    margin-top: 1rem;
+
+    img {
+      display: block;
+      width: 0.48rem;
+      height: 0.48rem;
+    }
+
+    h2 {
+      margin: 0;
+      padding: 0.1rem;
+      color: rgb(0, 112, 192);
+      font-size: map-get($font-sizes, 'xl');
+    }
   }
 }
 </style>
