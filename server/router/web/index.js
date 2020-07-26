@@ -4,6 +4,7 @@ const router = express.Router();
 const newsListApi = require('./news-list-api.js');
 const heroesListApi = require('./heroes-list-api.js');
 const articleApi = require('./article-api.js');
+const heroApi = require('./hero-api.js');
 
 module.exports = (app) => {
   // 新闻获取接口
@@ -12,6 +13,8 @@ module.exports = (app) => {
   router.get('/heroes/list', heroesListApi);
   // 文章详情接口
   router.get('/article/:id', articleApi);
+  // 英雄详情接口
+  router.get('/hero/:id', heroApi);
 
   app.use('/web/api', router);
 };

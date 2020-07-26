@@ -14,6 +14,22 @@ export default {
     id: String,
   },
   components: { TopBar },
+  data() {
+    return {
+      heroData: {},
+    };
+  },
+  methods: {
+    async fetchHeroData() {
+      const res = await this.$http.get(`/hero/${this.id}`);
+      if (res.status === 200) {
+        this.heroData = res.data;
+      }
+    },
+  },
+  activated() {
+    this.fetchHeroData();
+  },
 };
 </script>
 
