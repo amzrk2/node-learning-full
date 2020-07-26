@@ -47,6 +47,24 @@
           <span class="skill-tips">小提示：{{ item.tips }}</span>
         </div>
       </div>
+      <div class="items">
+        <span class="font-xl">顺风出装</span>
+        <div class="items-wrapper font-xs">
+          <div class="item" v-for="item of heroData.itemsAdv" :key="`item-adv-${item._id}`">
+            <img :src="item.icon" />
+            <span>{{ item.name }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="items">
+        <span class="font-xl">逆风出装</span>
+        <div class="items-wrapper font-xs">
+          <div class="item" v-for="item of heroData.itemsDis" :key="`item-adv-${item._id}`">
+            <img :src="item.icon" />
+            <span>{{ item.name }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -68,6 +86,9 @@ export default {
         name: '',
         categories: '',
         scores: { difficult: 0, skills: 0, attack: 0, survive: 0 },
+        skills: [],
+        itemsAdv: [],
+        itemsDis: [],
       },
     };
   },
@@ -90,12 +111,39 @@ export default {
   margin-top: 0.9rem;
 }
 
+.items {
+  background-color: map-get($colors, 'white');
+  margin-top: 0.3rem;
+
+  & > span {
+    font-weight: bold;
+    padding: 0 0.3rem;
+    line-height: 1rem;
+  }
+
+  .items-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 0 0.3rem 0;
+
+    img {
+      display: block;
+      width: 70%;
+      margin: 0 auto 0.2rem auto;
+      border-radius: 50%;
+    }
+  }
+}
+
 div.skills {
   background-color: map-get($colors, 'white');
 
   .skill-tab {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.4rem;
     padding: 0.4rem;
 
