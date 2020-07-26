@@ -14,16 +14,15 @@
         <h2>相关资讯</h2>
       </div>
       <div class="about-info">
-        <router-link
-          tag="div"
+        <a
           class="news-line font-lg"
-          v-for="(item, index) of articleRelated"
+          v-for="(item, index) of articleData.related"
           :key="`list-item-${index}`"
-          :to="`/article/${item._id}`"
+          @click="handleArticleChange(item._id)"
         >
           <span class="news-title">{{ item.title }}</span>
           <span class="news-date font-sm color-grey">{{ item.createdAt | date }}</span>
-        </router-link>
+        </a>
       </div>
     </div>
   </div>
@@ -53,7 +52,6 @@ export default {
         createdAt: '1970-01-01',
         body: '',
       },
-      articleRelated: [],
     };
   },
   methods: {
@@ -65,6 +63,12 @@ export default {
       if (res.status === 200) {
         this.articleData = res.data;
       }
+    },
+    handleArticleChange(id) {
+      this.$router.push(`/article/${id}`);
+      this.$nextTick(() => {
+        this.fetchArticleData();
+      });
     },
   },
   mounted() {
@@ -135,6 +139,18 @@ export default {
       color: rgb(0, 112, 192);
       font-size: map-get($font-sizes, 'xl');
     }
+  }
+}
+
+.about-info {
+  margin: 0.2rem 0.45rem 0 0.45rem;
+  padding-bottom: 1rem;
+
+  a {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.2rem;
   }
 }
 </style>
