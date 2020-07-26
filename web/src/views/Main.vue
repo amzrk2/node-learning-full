@@ -3,7 +3,9 @@
     <top-bar />
     <nav-bar />
     <div class="content">
-      <router-view />
+      <keep-alive>
+        <router-view />
+      </keep-alive>
     </div>
   </div>
 </template>
@@ -14,7 +16,7 @@ import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: 'Main',
-  components: { TopBar, NavBar }
+  components: { TopBar, NavBar },
 };
 </script>
 
