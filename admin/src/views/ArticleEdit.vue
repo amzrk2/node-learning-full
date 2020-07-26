@@ -3,7 +3,7 @@
     <h2>{{ id?'编辑':'新建' }}文章 {{ id }}</h2>
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item label="分类">
-        <el-select v-model="model.category">
+        <el-select v-model="model.category" filterable>
           <el-option
             v-for="item of categories"
             :key="item._id"
@@ -31,10 +31,10 @@ import { VueEditor } from 'vue2-editor';
 export default {
   name: 'ArticleEdit',
   props: {
-    id: String
+    id: String,
   },
   components: {
-    VueEditor
+    VueEditor,
   },
   data() {
     return {
@@ -42,7 +42,7 @@ export default {
       categories: [],
       editorOption: {
         // Some Quill options...
-      }
+      },
     };
   },
   methods: {
@@ -57,7 +57,7 @@ export default {
       this.$router.push('/articles/list');
       this.$message({
         type: 'success',
-        message: '保存成功'
+        message: '保存成功',
       });
     },
     async fetch() {
@@ -79,14 +79,14 @@ export default {
       } catch (e) {
         console.error(e);
       }
-    }
+    },
   },
   mounted() {
     this.fetchCategories();
     if (this.id) {
       this.fetch();
     }
-  }
+  },
 };
 </script>
 

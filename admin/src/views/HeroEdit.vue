@@ -23,7 +23,7 @@
             <el-input v-model="model.title"></el-input>
           </el-form-item>
           <el-form-item label="类型">
-            <el-select v-model="model.categories" multiple>
+            <el-select v-model="model.categories" multiple filterable>
               <el-option
                 v-for="item of allHeroCategories"
                 :key="item._id"
@@ -45,7 +45,7 @@
             <el-rate :max="9" v-model="model.scores.survive" show-score></el-rate>
           </el-form-item>
           <el-form-item label="顺风出装">
-            <el-select v-model="model.itemsAdv" multiple>
+            <el-select v-model="model.itemsAdv" multiple filterable>
               <el-option
                 v-for="item of allItems"
                 :key="item._id"
@@ -55,7 +55,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="逆风出装">
-            <el-select v-model="model.itemsDis" multiple>
+            <el-select v-model="model.itemsDis" multiple filterable>
               <el-option
                 v-for="item of allItems"
                 :key="item._id"
@@ -216,5 +216,11 @@ export default {
 .skill-item {
   border-bottom: 1px solid #dcdfe6;
   margin-bottom: 1.5rem;
+}
+
+::v-deep {
+  .el-select {
+    width: 75%;
+  }
 }
 </style>
