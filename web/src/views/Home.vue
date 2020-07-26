@@ -62,6 +62,21 @@ export default {
             });
           }
         });
+        // 确保顺序显示，理论上应由后端给出最新数据
+        data.forEach((cat) => {
+          cat.newsList.sort((a, b) => {
+            let dateA = new Date(a.createdAt).getTime();
+            let dateB = new Date(b.createdAt).getTime();
+            // 大到小排列
+            if (dateA < dateB) {
+              return 1;
+            } else if (dateA > dateB) {
+              return -1;
+            } else {
+              return 0;
+            }
+          });
+        });
         this.newsData = data;
       }
     },
