@@ -17,20 +17,26 @@ const routes = [
       {
         path: '/article/:id',
         name: 'Article', // 文章详情页
-        component: () => import(/* webpackChunkName: "home" */ '../views/Article.vue'),
+        component: () => import(/* webpackChunkName: "article" */ '../views/Article.vue'),
         props: true,
       },
       {
         path: '/strategy',
         name: 'Strategy', // 攻略中心
-        component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+        component: () => import(/* webpackChunkName: "other" */ '../views/Home.vue'),
       },
       {
         path: '/match',
         name: 'Match', // 赛事中心
-        component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+        component: () => import(/* webpackChunkName: "other" */ '../views/Home.vue'),
       },
     ],
+  },
+  {
+    path: '/hero/:id', // 英雄页面，注意层级
+    name: 'Hero',
+    component: () => import(/* webpackChunkName: "hero" */ '../views/Hero.vue'),
+    props: true,
   },
 ];
 
