@@ -20,6 +20,12 @@ require('./plugin/db')(app);
 require('./router/admin/index')(app);
 require('./router/web/index')(app);
 
+// 编译的前端静态文件
+// //domain.com/admin => ./public/admin
+app.use('/admin', express.static(path.resolve(__dirname, 'public/admin')));
+// //domain.com => ./public/web
+app.use('/', express.static(path.resolve(__dirname, 'public/web')));
+
 app.listen(3000, () => {
   console.log('http://localhost:3000');
 });

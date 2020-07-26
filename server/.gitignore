@@ -5,6 +5,9 @@ Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
 
+## Static built file
+public/
+
 # Logs
 logs
 *.log
