@@ -22,14 +22,19 @@
     <slot-list-card title="英雄列表" icon="spirit hero" :card-data="heroesData">
       <template v-slot:list="{ data }">
         <div class="hero font-sm">
-          <div v-for="(item, index) of data.herosList" :key="`hero-item-${index}`">
+          <router-link
+            tag="div"
+            v-for="(item, index) of data.herosList"
+            :key="`hero-item-${index}`"
+            :to="`/hero/${item._id}`"
+          >
             <div class="hero-icon">
               <img :src="item.avatar" />
             </div>
             <div class="hero-name">
               <span>{{ item.name }}</span>
             </div>
-          </div>
+          </router-link>
         </div>
       </template>
     </slot-list-card>
