@@ -11,7 +11,7 @@ module.exports = (app) => {
   router.get('/news/list', async (req, res) => {
     // 1 获取父级分类
     const parentCategory = await Category.findOne({
-      name: '新闻资讯',
+      name: '主-新闻资讯',
     });
     // 结果：{"_id":"5f094f5f43aa005c92b949bb", "name":"新闻资讯", "__v":0}
 
