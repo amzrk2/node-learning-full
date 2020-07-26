@@ -17,7 +17,20 @@
         </div>
       </template>
     </slot-list-card>
-    <slot-list-card title="英雄列表" icon="spirit hero" :card-data="heroesData"></slot-list-card>
+    <slot-list-card title="英雄列表" icon="spirit hero" :card-data="heroesData">
+      <template v-slot:list="{ data }">
+        <div class="hero font-sm">
+          <div v-for="(item, index) of data.herosList" :key="`hero-item-${index}`">
+            <div class="hero-icon">
+              <img :src="item.avatar" />
+            </div>
+            <div class="hero-name">
+              <span>{{ item.name }}</span>
+            </div>
+          </div>
+        </div>
+      </template>
+    </slot-list-card>
   </div>
 </template>
 
@@ -120,6 +133,28 @@ export default {
   .news-date {
     flex: 0 0 auto;
     margin-left: 0.2rem;
+  }
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  justify-content: space-between;
+  margin: 0 -0.08rem;
+
+  & > div {
+    flex: 0 0 20%;
+  }
+
+  .hero-icon img {
+    width: 88%;
+  }
+
+  .hero-name {
+    margin: 0.2rem 0;
   }
 }
 </style>

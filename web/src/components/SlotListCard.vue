@@ -14,7 +14,12 @@
       </ul>
     </div>
     <div class="card-content">
-      <swiper class="card-swiper" ref="cardSwiper" @slide-change="handleSlideChange">
+      <swiper
+        class="card-swiper"
+        ref="cardSwiper"
+        @slide-change="handleSlideChange"
+        :options="{ autoHeight: true }"
+      >
         <swiper-slide v-for="(item, index) of cardData" :key="`slide-${index}`">
           <!-- 将 item 数据绑定在名为 list 的插槽上 -->
           <slot name="list" :data="item"></slot>
