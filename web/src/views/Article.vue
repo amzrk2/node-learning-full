@@ -116,6 +116,10 @@ export default {
 .article-content {
   padding: 0 0.4rem;
   line-height: 2;
+
+  ::v-deep img {
+    max-width: 100%;
+  }
 }
 
 .article-about {
