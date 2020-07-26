@@ -17,7 +17,7 @@
         </div>
       </template>
     </slot-list-card>
-    <slot-list-card title="英雄列表" icon="spirit hero"></slot-list-card>
+    <slot-list-card title="英雄列表" icon="spirit hero" :card-data="heroesData"></slot-list-card>
   </div>
 </template>
 
@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       newsData: [],
+      heroesData: [],
     };
   },
   filters: {
@@ -80,9 +81,17 @@ export default {
         this.newsData = data;
       }
     },
+    async fetchHeroesData() {
+      const res = await this.$http.get('/heroes/list');
+      if (res.status === 200) {
+        const data = res.data;
+        this.heroesData = data;
+      }
+    },
   },
   mounted() {
     this.fetchNewsData();
+    this.fetchHeroesData();
   },
 };
 </script>

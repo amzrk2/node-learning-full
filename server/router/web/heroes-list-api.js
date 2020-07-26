@@ -37,7 +37,7 @@ module.exports = async function heroesListApi(req, res) {
 
   // 3 添加热门英雄分类 (模拟)
   // 所有英雄
-  const hotHeros = await Hero.find({});
+  const hotHeros = await Hero.find({}).lean();
   // 随机任取十个
   hotHeros.sort((a, b) => {
     return Math.random() - 0.5;
