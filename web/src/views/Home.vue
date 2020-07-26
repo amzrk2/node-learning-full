@@ -5,16 +5,18 @@
     <slot-list-card title="新闻资讯" icon="spirit xw" :card-data="newsData">
       <!-- 获取名为 list 的插槽上绑定的数据并决定显示这些数据的方式 -->
       <template v-slot:list="{ data }">
-        <div
+        <router-link
+          tag="div"
           class="news-line font-lg"
           v-for="(item, index) of data.newsList"
           :key="`list-item-${index}`"
+          :to="`/article/${item._id}`"
         >
           <span class="news-tag color-grey">[{{ item.category.name }}]</span>
           <span class="news-divid">|</span>
           <span class="news-title">{{ item.title }}</span>
           <span class="news-date font-sm color-grey">{{ item.createdAt | date }}</span>
-        </div>
+        </router-link>
       </template>
     </slot-list-card>
     <slot-list-card title="英雄列表" icon="spirit hero" :card-data="heroesData">
@@ -112,6 +114,7 @@ export default {
 <style lang="scss" scoped>
 .news-line {
   display: flex;
+  cursor: pointer;
 
   &:not(:last-child) {
     margin-bottom: 0.3rem;

@@ -15,6 +15,12 @@ const routes = [
         component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
       },
       {
+        path: '/article/:id',
+        name: 'Article', // 文章详情页
+        component: () => import(/* webpackChunkName: "home" */ '../views/Article.vue'),
+        props: true,
+      },
+      {
         path: '/strategy',
         name: 'Strategy', // 攻略中心
         component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
