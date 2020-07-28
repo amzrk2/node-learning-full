@@ -6,6 +6,8 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 
 - <https://blog.amzrk2.cc/post/universal-crud-router/>
 - <https://blog.amzrk2.cc/post/login-api-jwt/>
+- <https://note.amzrk2.cc/qian-duan/vue.js/tong-yong-ka-pian-zu-jian-zuo-yong-yu-cha-cao-shi-xian>
+- <https://note.amzrk2.cc/qian-duan/sheng-chan-huan-jing-bu-shu>
 - 所有注释
 
 依据个人情况修改与学习自：<https://github.com/wxs77577/node-vue-moba>。
@@ -35,6 +37,8 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 ```bash
 mongorestore -h <hostname><:port> -d dbname <path>
 ```
+
+注意数据库 dump 内开发时上传的图片 `baseURL` 为 `localhost:3000`，可能需要进行替换。文件上传后返回的地址设定位于 `server/router/admin/index.js`，可以根据 NODE_ENV 动态进行设置，这里固定设置为了 `localhost:3000`。
 
 ## server
 
