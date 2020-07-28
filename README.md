@@ -12,6 +12,7 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 
 自行修改的内容：
 
+- HTML5 History 模式配置
 - 大量移动端页面的 CSS 实现方法
 - Spirit 图片的部分应用
 - 通用卡片组件的实现
@@ -26,6 +27,14 @@ Node + Vue + MongoDB 实验项目还原游戏内容发布站，用于完整学�
 - 部分数据的逻辑设计
 - 登录用户信息回显
 - 注销账户功能
+
+数据库 dump 文件：
+
+`dump` 文件夹内，导出时为 `test` 数据库，导入：
+
+```bash
+mongorestore -h <hostname><:port> -d dbname <path>
+```
 
 ## server
 
