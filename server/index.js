@@ -24,7 +24,7 @@ app.use(
     // 路径包含 /admin 的，基础 HTML 为 /admin/index.html 而不是默认的 /web/index.html
     rewrites: [
       {
-        from: /^\/admin\/.*$/,
+        from: /^\/admin.*$/,
         to: '/admin/index.html',
       },
     ],
