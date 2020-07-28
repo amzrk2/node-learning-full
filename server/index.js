@@ -18,7 +18,16 @@ app.use(express.json());
 // history mode support
 app.use(
   history({
+    // 修复无法正常加载图片/API等问题
     htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+    // 修复后台面板获取资源不正确问题
+    // 路径包含 /admin 的，基础 HTML 为 /admin/index.html 而不是默认的 /web/index.html
+    rewrites: [
+      {
+        from: /^\/admin\/.*$/,
+        to: '/admin/index.html',
+      },
+    ],
   })
 );
 
