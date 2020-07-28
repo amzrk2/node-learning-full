@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const history = require('connect-history-api-fallback');
 
 const app = express();
 app.use(
@@ -13,6 +14,13 @@ app.use(
 );
 app.use(require('cookie-parser')());
 app.use(express.json());
+
+// history mode support
+app.use(
+  history({
+    htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+  })
+);
 
 // 静态可访问文件
 app.use('/uploads', express.static(path.resolve(__dirname, 'uploads')));
